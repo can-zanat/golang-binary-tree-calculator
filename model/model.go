@@ -1,8 +1,24 @@
 package model
 
+//type BinaryTree struct {
+//	Nodes map[string]*Node `json:"nodes"`
+//	Root  string           `json:"root"`
+//}
+//
+//type Tree struct {
+//	Tree *BinaryTree `json:"tree"`
+//}
+//
+//type Node struct {
+//	ID    string  `json:"id"`
+//	Left  *string `json:"left,omitempty"`
+//	Right *string `json:"right,omitempty"`
+//	Value int     `json:"value"`
+//}
+
 type BinaryTree struct {
-	Nodes map[string]*Node `json:"nodes"`
-	Root  string           `json:"root"`
+	Nodes []*Node `json:"nodes"`
+	Root  string  `json:"root"`
 }
 
 type Tree struct {
@@ -10,10 +26,10 @@ type Tree struct {
 }
 
 type Node struct {
-	ID    string  `json:"id"`
-	Left  *string `json:"left,omitempty"`
-	Right *string `json:"right,omitempty"`
-	Value int     `json:"value"`
+	ID    string `json:"id"`
+	Left  string `json:"left"`
+	Right string `json:"right"`
+	Value int    `json:"value"`
 }
 
 type BinaryTreeSum struct {

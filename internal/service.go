@@ -17,38 +17,55 @@ func (s *Service) PostBinaryTreeSum(tree *model.Tree) (*model.BinaryTreeSum, err
 
 	binaryTree := tree.Tree
 
-	root := convertToTreeNode(binaryTree.Nodes[binaryTree.Root], binaryTree.Nodes)
+	nodesMap := make(map[string]*model.Node)
+	for _, node := range binaryTree.Nodes {
+		nodesMap[node.ID] = node
+	}
+
+	root := convertToTreeNode(nodesMap[binaryTree.Root], nodesMap)
 	result := maxPathSum(root)
 
 	return &model.BinaryTreeSum{Sum: result}, nil
 }
 
-func convertToTreeNode(node *model.Node, nodes map[string]*model.Node) *model.TreeNode {
+func convertToTreeNode(node *model.Node, nodesMap map[string]*model.Node) *model.TreeNode {
 	if node == nil {
 		return nil
 	}
 
 	var leftNode, rightNode *model.Node
 
-	if node.Left != nil {
-		leftNode = nodes[*node.Left]
+	// Left ve Right ID'lerini kontrol etme ve nodesMap'ten alınan düğümleri kullanma
+	if node.Left != "" {
+		leftNode = nodesMap[node.Left]
 	}
-	if node.Right != nil {
-		rightNode = nodes[*node.Right]
+	if node.Right != "" {
+		rightNode = nodesMap[node.Right]
 	}
 
 	return &model.TreeNode{
 		Val:   node.Value,
-		Left:  convertToTreeNode(leftNode, nodes),
-		Right: convertToTreeNode(rightNode, nodes),
+		Left:  convertToTreeNode(leftNode, nodesMap),
+		Right: convertToTreeNode(rightNode, nodesMap),
 	}
+
 	//if node == nil {
 	//	return nil
 	//}
+	//
+	//var leftNode, rightNode *model.Node
+	//
+	//if node.Left != nil {
+	//	leftNode = nodes[*node.Left]
+	//}
+	//if node.Right != nil {
+	//	rightNode = nodes[*node.Right]
+	//}
+	//
 	//return &model.TreeNode{
 	//	Val:   node.Value,
-	//	Left:  convertToTreeNode(node.Left),
-	//	Right: convertToTreeNode(node.Right),
+	//	Left:  convertToTreeNode(leftNode, nodes),
+	//	Right: convertToTreeNode(rightNode, nodes),
 	//}
 }
 

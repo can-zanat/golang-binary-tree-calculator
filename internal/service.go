@@ -35,12 +35,11 @@ func convertToTreeNode(node *model.Node, nodesMap map[string]*model.Node) *model
 
 	var leftNode, rightNode *model.Node
 
-	// Left ve Right ID'lerini kontrol etme ve nodesMap'ten alınan düğümleri kullanma
-	if node.Left != "" {
-		leftNode = nodesMap[node.Left]
+	if node.Left != nil {
+		leftNode = nodesMap[*node.Left]
 	}
-	if node.Right != "" {
-		rightNode = nodesMap[node.Right]
+	if node.Right != nil {
+		rightNode = nodesMap[*node.Right]
 	}
 
 	return &model.TreeNode{
@@ -48,25 +47,6 @@ func convertToTreeNode(node *model.Node, nodesMap map[string]*model.Node) *model
 		Left:  convertToTreeNode(leftNode, nodesMap),
 		Right: convertToTreeNode(rightNode, nodesMap),
 	}
-
-	//if node == nil {
-	//	return nil
-	//}
-	//
-	//var leftNode, rightNode *model.Node
-	//
-	//if node.Left != nil {
-	//	leftNode = nodes[*node.Left]
-	//}
-	//if node.Right != nil {
-	//	rightNode = nodes[*node.Right]
-	//}
-	//
-	//return &model.TreeNode{
-	//	Val:   node.Value,
-	//	Left:  convertToTreeNode(leftNode, nodes),
-	//	Right: convertToTreeNode(rightNode, nodes),
-	//}
 }
 
 func maxPathSum(root *model.TreeNode) int {

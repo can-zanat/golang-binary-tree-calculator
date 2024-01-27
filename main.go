@@ -18,6 +18,7 @@ func main() {
 	}
 }
 
+//nolint:unparam // run function is not using any parameters
 func run() error {
 	loggerInfoLevel := logger.NewWithLogLevel("info")
 	defer func() {

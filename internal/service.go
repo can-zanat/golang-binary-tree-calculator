@@ -14,7 +14,6 @@ func NewService() *Service {
 }
 
 func (s *Service) PostBinaryTreeSum(tree *model.Tree) (*model.BinaryTreeSum, error) {
-
 	binaryTree := tree.Tree
 
 	nodesMap := make(map[string]*model.Node)
@@ -38,6 +37,7 @@ func convertToTreeNode(node *model.Node, nodesMap map[string]*model.Node) *model
 	if node.Left != nil {
 		leftNode = nodesMap[*node.Left]
 	}
+
 	if node.Right != nil {
 		rightNode = nodesMap[*node.Right]
 	}
@@ -52,6 +52,7 @@ func convertToTreeNode(node *model.Node, nodesMap map[string]*model.Node) *model
 func maxPathSum(root *model.TreeNode) int {
 	maxPathSum := root.Val
 	dfs(root, &maxPathSum)
+
 	return maxPathSum
 }
 
@@ -64,6 +65,7 @@ func dfs(root *model.TreeNode, maxPathSum *int) int {
 	rightMax := max(dfs(root.Right, maxPathSum), 0)
 
 	*maxPathSum = max(*maxPathSum, root.Val+leftMax+rightMax)
+
 	return root.Val + max(leftMax, rightMax)
 }
 
@@ -71,5 +73,6 @@ func max(a, b int) int {
 	if a > b {
 		return a
 	}
+
 	return b
 }

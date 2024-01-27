@@ -1,8 +1,9 @@
 package internal
 
 import (
-	"github.com/gofiber/fiber/v2"
 	"main/model"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 type Handler struct {

@@ -300,6 +300,7 @@ func NewUsersRequest(method, url string, body *model.Tree) *http.Request {
 	requestBody, _ := json.Marshal(body)
 	req := httptest.NewRequest(method, url, bytes.NewReader(requestBody))
 	req.Header.Add("Content-type", "application/json")
+
 	return req
 }
 
@@ -307,5 +308,6 @@ func StringPtr(s string) *string {
 	if s == "" {
 		return nil
 	}
+
 	return &s
 }

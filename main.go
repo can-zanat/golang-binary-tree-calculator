@@ -9,7 +9,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-const serverPort = ":82"
+const serverPort = ":83"
 
 func main() {
 	if err := run(); err != nil {

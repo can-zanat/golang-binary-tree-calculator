@@ -1,4 +1,4 @@
-# golang-technical-assignment
+# golang-binay-tree-calculator
 Golang Web Server for binary tree calculation
 
 # You can use this curl command to test the API
